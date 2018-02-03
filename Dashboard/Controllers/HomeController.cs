@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Dashboard.Models;
+using Dashboard.Logic;
 
 namespace Dashboard.Controllers
 {
@@ -12,7 +13,13 @@ namespace Dashboard.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = new ViewModel {
+                RaboBetaal = DataSingleton.Instance.RaboBetaalMoney,
+                RaboSpaar = DataSingleton.Instance.RaboSpaarMoney,
+                Moneyou = DataSingleton.Instance.MoneyouMoney,
+                Transactions = DataSingleton.Instance.Transactions.Where(x => x.Date.Year == 2017).ToList()
+            };
+            return View(model);
         }
 
         public IActionResult About()

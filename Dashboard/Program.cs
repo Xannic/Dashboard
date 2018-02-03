@@ -14,6 +14,7 @@ namespace Dashboard
     {
         public static void Main(string[] args)
         {
+            var data = DataSingleton.Instance;
             BuildWebHost(args).Run();
         }
 
